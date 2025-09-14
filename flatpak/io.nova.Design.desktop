@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Nova Design
+GenericName=CAD/BIM Application
+Comment=Linux-only CAD/BIM light for trades, built in Rust
+Icon=io.nova.Design
+Exec=nova-design
+Categories=Graphics;Engineering;
+Keywords=CAD;BIM;Design;Engineering;Architecture;Electrical;Plumbing;
+StartupNotify=true
+MimeType=application/x-nova-design;
