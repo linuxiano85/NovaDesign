@@ -1,0 +1,14 @@
+[package]
+name = "nova-bom"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "Bill of Materials engine for NovaDesign"
+
+[dependencies]
+nova-core = { path = "../nova-core" }
+serde.workspace = true
+serde_json.workspace = true
+csv.workspace = true

@@ -1,0 +1,23 @@
+[package]
+name = "nova-design"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "NovaDesign CAD/BIM-lite application"
+
+[[bin]]
+name = "nova-design"
+path = "src/main.rs"
+
+[dependencies]
+nova-core = { path = "../nova-core" }
+nova-bom = { path = "../nova-bom" }
+nova-biz = { path = "../nova-biz" }
+nova-i18n = { path = "../nova-i18n" }
+nova-plugin-sdk = { path = "../nova-plugin-sdk" }
+gtk4.workspace = true
+libadwaita.workspace = true
+serde.workspace = true
+serde_json.workspace = true

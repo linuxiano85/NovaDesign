@@ -1,0 +1,15 @@
+[package]
+name = "nova-biz"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "Business suite for NovaDesign (quotes, invoices, customers)"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+csv.workspace = true

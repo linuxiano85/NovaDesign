@@ -1,0 +1,12 @@
+[package]
+name = "nova-plugin-sdk"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "Plugin SDK for NovaDesign (WASM/WASI stub)"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
