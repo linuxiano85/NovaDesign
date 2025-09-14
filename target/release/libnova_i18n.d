@@ -1,1 +1,0 @@
-/home/runner/work/NovaDesign/NovaDesign/target/release/libnova_i18n.rlib: /home/runner/work/NovaDesign/NovaDesign/nova-i18n/locales/en.ftl /home/runner/work/NovaDesign/NovaDesign/nova-i18n/locales/it.ftl /home/runner/work/NovaDesign/NovaDesign/nova-i18n/src/lib.rs
