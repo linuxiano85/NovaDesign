@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.nova.Design</id>
+  <metadata_license>GPL-3.0-or-later</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Nova Design</name>
+  <summary>Linux CAD/BIM light for trades</summary>
+  <description>
+    <p>
+      Nova Design is a Linux-only CAD/BIM application focused on trades work such as electrical, plumbing, masonry, drywall, and painting. Built in Rust with GTK4 and Libadwaita, it provides a modern, efficient workflow for trade professionals.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Multi-discipline support (electrical, plumbing, drywall, etc.)</li>
+      <li>Bill of Materials (BOM) calculations</li>
+      <li>Phase-based design (existing, demolition, new)</li>
+      <li>Symbol libraries for electrical and plumbing components</li>
+      <li>Layer management by discipline</li>
+      <li>Material database and cost calculations</li>
+      <li>Plugin system for extensibility</li>
+      <li>Internationalization (Italian and English)</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">io.nova.Design.desktop</launchable>
+  <provides>
+    <binary>nova-design</binary>
+  </provides>
+  <categories>
+    <category>Graphics</category>
+    <category>Engineering</category>
+  </categories>
+  <keywords>
+    <keyword>CAD</keyword>
+    <keyword>BIM</keyword>
+    <keyword>Design</keyword>
+    <keyword>Engineering</keyword>
+    <keyword>Architecture</keyword>
+    <keyword>Electrical</keyword>
+    <keyword>Plumbing</keyword>
+    <keyword>Trades</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" date="2024-01-01">
+      <description>
+        <p>Initial release of Nova Design</p>
+        <ul>
+          <li>Basic project structure and UI</li>
+          <li>Core data models for buildings, floors, walls, and components</li>
+          <li>BOM calculation engine for drywall and suspended ceilings</li>
+          <li>Electrical and plumbing symbol placeholders</li>
+          <li>Plugin SDK foundation</li>
+          <li>Internationalization support (IT/EN)</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>

@@ -1,0 +1,1 @@
+{"rustc":12013579709055016942,"features":"","declared_features":"","target":0,"profile":0,"path":0,"deps":[[7082879116672471763,"build_script_build",false,1494523504461604738]],"local":[{"RerunIfChanged":{"output":"debug/build/wasmtime-component-macro-750d9f89cbc5c02b/output","paths":["build.rs"]}}],"rustflags":[],"config":0,"compile_kind":0}

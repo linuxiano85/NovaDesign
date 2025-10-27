@@ -1,0 +1,10 @@
+/home/runner/work/NovaDesign/NovaDesign/target/debug/deps/wasmtime_wit_bindgen-4f7dbe82889c1fbc.d: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/rust.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/source.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/types.rs
+
+/home/runner/work/NovaDesign/NovaDesign/target/debug/deps/libwasmtime_wit_bindgen-4f7dbe82889c1fbc.rlib: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/rust.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/source.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/types.rs
+
+/home/runner/work/NovaDesign/NovaDesign/target/debug/deps/libwasmtime_wit_bindgen-4f7dbe82889c1fbc.rmeta: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/rust.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/source.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/types.rs
+
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/lib.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/rust.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/source.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmtime-wit-bindgen-20.0.2/src/types.rs:

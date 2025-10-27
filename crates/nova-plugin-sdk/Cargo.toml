@@ -1,0 +1,16 @@
+[package]
+name = "nova-plugin-sdk"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+description = "Plugin SDK for Nova Design - WASM/WASI based plugin system"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+nova-core = { path = "../nova-core" }
+wasmtime = "20"
+wasmtime-wasi = "20"
+anyhow = "1.0"
+toml = "0.8"
