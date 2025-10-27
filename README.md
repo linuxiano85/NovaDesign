@@ -1,131 +1,201 @@
 # NovaDesign
 
-Nova Design is a Linux-only CAD/BIM application focused on trades work such as electrical, plumbing, masonry, drywall, and painting. Built in Rust with modern technologies, it provides an efficient workflow for trade professionals.
+A modern GTK4/Libadwaita application for Linux.
 
-## Features
+## Cross-distro Developer Setup
 
-- **Multi-discipline support**: electrical, plumbing, drywall, suspended ceilings, masonry, and painting
-- **Bill of Materials (BOM) calculations**: automated material lists with quantity and cost calculations
-- **Phase-based design**: support for existing, demolition, and new construction phases
-- **Symbol libraries**: electrical and plumbing component symbols with plan-view conventions
-- **Layer management**: organize drawing elements by discipline with visibility controls
-- **Material database**: comprehensive database with cost calculations
-- **Plugin system**: WASM-based plugin SDK for extensibility
-- **Internationalization**: support for Italian and English
-- **Modern UI**: GTK4 and Libadwaita for native Linux integration
+NovaDesign targets Linux universally and provides automated setup across major distributions. The recommended way for end users to run NovaDesign is via **Flatpak** (universal runtime), while native builds are primarily for developers.
 
-## Architecture
+### Quick Setup (Automated)
 
-The project is organized as a Rust workspace with the following crates:
-
-- **nova-core**: Core data models and types (buildings, floors, walls, components, materials)
-- **nova-bom**: Bill of Materials calculation engine with discipline-specific calculators
-- **nova-i18n**: Internationalization support using Fluent
-- **nova-plugin-sdk**: Plugin system infrastructure with WASM/WASI support
-- **nova-app**: GTK4/Libadwaita application (currently in development)
-
-## Building
-
-### Prerequisites
+For a fully automated setup that detects your distribution and installs all required dependencies:
 
 ```bash
-sudo apt-get install libgtk-4-dev libadwaita-1-dev build-essential
+./scripts/dev-setup.sh
 ```
 
-### Build
+This script supports:
+- **Debian/Ubuntu** (apt)
+- **Fedora/RHEL** (dnf/yum) 
+- **Arch Linux** (pacman)
+- **openSUSE** (zypper)
+- **Gentoo** (emerge)
+
+### Manual Setup by Distribution
+
+If you prefer manual installation or the automated script doesn't work for your setup:
+
+#### Debian/Ubuntu
+```bash
+sudo apt update
+sudo apt install build-essential pkg-config libgtk-4-dev libadwaita-1-dev \
+    libglib2.0-dev libpango1.0-dev libcairo2-dev libgdk-pixbuf-2.0-dev \
+    flatpak flatpak-builder
+```
+
+#### Fedora/RHEL
+```bash
+sudo dnf install gcc gcc-c++ pkg-config gtk4-devel libadwaita-devel \
+    glib2-devel pango-devel cairo-devel gdk-pixbuf2-devel \
+    flatpak flatpak-builder
+```
+
+#### Arch Linux
+```bash
+sudo pacman -Sy base-devel pkgconf gtk4 libadwaita glib2 pango cairo \
+    gdk-pixbuf2 flatpak flatpak-builder
+```
+
+#### openSUSE
+```bash
+sudo zypper install gcc gcc-c++ pkg-config gtk4-devel libadwaita-1-devel \
+    glib2-devel pango-devel cairo-devel gdk-pixbuf-devel \
+    flatpak flatpak-builder
+```
+
+#### Gentoo
+```bash
+sudo emerge sys-devel/gcc virtual/pkgconfig gui-libs/gtk:4 gui-libs/libadwaita \
+    dev-libs/glib x11-libs/pango x11-libs/cairo x11-libs/gdk-pixbuf \
+    sys-apps/flatpak dev-util/flatpak-builder
+```
+
+#### Nix/NixOS
+
+For Nix users, you can use a development shell:
 
 ```bash
-# Build all core libraries
-cargo build --release --workspace --exclude nova-app
+nix-shell -p pkg-config gtk4 libadwaita glib pango cairo gdk-pixbuf flatpak flatpak-builder rustc cargo
+```
+
+Or create a `shell.nix` file in your project directory:
+
+```nix
+{ pkgs ? import <nixpkgs> {} }:
+
+pkgs.mkShell {
+  buildInputs = with pkgs; [
+    pkg-config
+    gtk4
+    libadwaita
+    glib
+    pango
+    cairo
+    gdk-pixbuf
+    flatpak
+    flatpak-builder
+    rustc
+    cargo
+  ];
+}
+```
+
+### Rust Installation
+
+If you don't have Rust installed, the setup script will install it automatically via rustup. You can also install it manually:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+```
+
+## Building and Running
+
+### Using Make (Recommended)
+
+The project includes a Makefile with convenient targets:
+
+```bash
+# First-time setup
+make setup
+
+# Build the project
+make build
+
+# Run the application
+make run
+
+# Format code
+make fmt
+
+# Run linter
+make clippy
+
+# Run tests  
+make test
+
+# Build Flatpak package
+make flatpak-build
+
+# Run via Flatpak
+make flatpak-run
+```
+
+### Using Cargo Directly
+
+```bash
+# Build the project
+cargo build --release
+
+# Run the application
+cargo run -p nova-app
 
 # Run tests
-cargo test --workspace --exclude nova-app
+cargo test
 
-# Check code style
-cargo fmt --all -- --check
-cargo clippy --all-targets --all-features -- -D warnings
+# Format code
+cargo fmt
+
+# Run clippy
+cargo clippy
 ```
 
-## BOM Calculation Features
+## Flatpak Usage (Recommended for End Users)
 
-### Drywall Calculations
+NovaDesign is designed to be distributed primarily via Flatpak for a universal Linux experience:
 
-- Panel area calculations based on wall dimensions
-- Stud length calculations with standard 400mm spacing
-- Track length calculations for perimeter
-- Screw count estimation (25 screws per m²)
-- Fixing calculations based on substrate type
+### Building the Flatpak
 
-### Suspended Ceiling Calculations
+```bash
+# Install required Flatpak runtimes
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak install flathub org.gnome.Platform//45 org.gnome.Sdk//45
 
-- Tile count with waste factor (600x600mm standard)
-- T-grid main and cross profile lengths
-- Hanger calculations with standard spacing
-- Fixing requirements for structural attachment
+# Build the Flatpak package
+flatpak-builder build flatpak/io.nova.Design.json --force-clean --install-deps-from=flathub
 
-### Electrical Calculations
+# Install locally
+flatpak-builder --user --install --force-clean build flatpak/io.nova.Design.json
 
-- Cable length estimation based on component layout
-- Device counting for outlets, switches, lights
-- Basic material requirements
+# Run the application
+flatpak run io.nova.Design
+```
 
-## Plugin System
+### Or use Make targets:
 
-The plugin SDK provides:
+```bash
+make flatpak-build
+make flatpak-run
+```
 
-- WASM/WASI-based plugin architecture
-- Type-safe plugin interfaces
-- Hot-loading capabilities
-- Sandboxed execution environment
-- Host function APIs for accessing project data
+## Development
 
-## Material Database
+### Project Structure
 
-Default materials include:
+- `nova-app/` - Main application package
+- `scripts/` - Development and setup scripts
+- `flatpak/` - Flatpak packaging configuration
+- `Makefile` - Convenient development targets
 
-- Drywall panels, studs, tracks, screws
-- Suspended ceiling tiles, grids, hangers
-- Electrical cables, outlets, switches
-- Fixings and fasteners
-- Cost information in EUR
+### Contributing
 
-## File Format
-
-The application uses a JSON-based project format with:
-
-- Hierarchical project structure (buildings → floors → components)
-- Phase information for renovation workflows  
-- Discipline-based organization
-- Extensible component properties
-
-## Internationalization
-
-Currently supported languages:
-- English (en)
-- Italian (it)
-
-Translation keys cover:
-- Application UI
-- Material names
-- Discipline terminology
-- BOM export labels
+1. Run the setup script: `./scripts/dev-setup.sh`
+2. Build the project: `make build`
+3. Make your changes
+4. Test your changes: `make test`
+5. Format code: `make fmt`
+6. Run linter: `make clippy`
 
 ## License
 
-GPL-3.0-or-later
-
-## Development Status
-
-This is the initial release (v0.1.0) focusing on:
-- ✅ Core data models and architecture
-- ✅ BOM calculation engine for drywall and suspended ceilings
-- ✅ Plugin SDK foundation
-- ✅ Internationalization infrastructure
-- 🚧 GTK4/Libadwaita UI (in progress)
-- 🚧 2D/3D rendering capabilities (planned)
-- 🚧 AI-assisted suggestions (planned)
-- 🚧 Open format support (planned)
-
-## Contributing
-
-This project welcomes contributions! Please see the issue tracker for planned features and improvements.
+This project is licensed under the terms specified in the LICENSE file.
