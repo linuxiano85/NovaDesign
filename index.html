@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaDesign - Mega App per Professionisti dell'Edilizia</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-hard-hat"></i>
+                <span>NovaDesign</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#dashboard" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="#projects" data-section="projects">Progetti</a></li>
+                    <li><a href="#calculator" data-section="calculator">Calcolatore</a></li>
+                    <li><a href="#estimates" data-section="estimates">Preventivi</a></li>
+                    <li><a href="#schedule" data-section="schedule">Pianificazione</a></li>
+                    <li><a href="#contacts" data-section="contacts">Contatti</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <select id="language-select">
+                    <option value="it">Italiano</option>
+                    <option value="en">English</option>
+                </select>
+                <div class="profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="user-name">Professionista</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <h1>Dashboard - Benvenuto in NovaDesign</h1>
+                
+                <!-- Professional Category Selection -->
+                <div class="category-selection">
+                    <h2>Seleziona la tua categoria professionale:</h2>
+                    <div class="categories-grid">
+                        <div class="category-card" data-category="architect">
+                            <i class="fas fa-drafting-compass"></i>
+                            <h3>Architetto</h3>
+                            <p>Progettazione e design</p>
+                        </div>
+                        <div class="category-card" data-category="engineer">
+                            <i class="fas fa-calculator"></i>
+                            <h3>Ingegnere</h3>
+                            <p>Calcoli strutturali e supervisione</p>
+                        </div>
+                        <div class="category-card" data-category="contractor">
+                            <i class="fas fa-tools"></i>
+                            <h3>Impresa</h3>
+                            <p>Gestione cantieri</p>
+                        </div>
+                        <div class="category-card" data-category="electrician">
+                            <i class="fas fa-bolt"></i>
+                            <h3>Elettricista</h3>
+                            <p>Impianti elettrici</p>
+                        </div>
+                        <div class="category-card" data-category="plumber">
+                            <i class="fas fa-faucet"></i>
+                            <h3>Idraulico</h3>
+                            <p>Impianti idraulici</p>
+                        </div>
+                        <div class="category-card" data-category="carpenter">
+                            <i class="fas fa-hammer"></i>
+                            <h3>Carpentiere</h3>
+                            <p>Lavorazioni in legno</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-project-diagram"></i>
+                        <div class="stat-info">
+                            <span class="stat-number" id="active-projects">0</span>
+                            <span class="stat-label">Progetti Attivi</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-euro-sign"></i>
+                        <div class="stat-info">
+                            <span class="stat-number" id="total-value">€0</span>
+                            <span class="stat-label">Valore Totale</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-info">
+                            <span class="stat-number" id="pending-tasks">0</span>
+                            <span class="stat-label">Attività Pendenti</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <span class="stat-number" id="total-contacts">0</span>
+                            <span class="stat-label">Contatti</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h2>Attività Recente</h2>
+                    <div id="activity-list" class="activity-list">
+                        <div class="activity-item">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Benvenuto in NovaDesign! Inizia selezionando la tua categoria professionale.</span>
+                            <span class="activity-time">Ora</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Gestione Progetti</h1>
+                    <button class="btn btn-primary" id="add-project-btn">
+                        <i class="fas fa-plus"></i> Nuovo Progetto
+                    </button>
+                </div>
+                
+                <div class="projects-grid" id="projects-list">
+                    <!-- Projects will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section id="calculator" class="section">
+            <div class="container">
+                <h1>Calcolatore Materiali</h1>
+                
+                <div class="calculator-grid">
+                    <div class="calculator-card">
+                        <h3>Cemento e Calcestruzzo</h3>
+                        <div class="calc-form">
+                            <label>Lunghezza (m):</label>
+                            <input type="number" id="concrete-length" step="0.1">
+                            <label>Larghezza (m):</label>
+                            <input type="number" id="concrete-width" step="0.1">
+                            <label>Spessore (m):</label>
+                            <input type="number" id="concrete-thickness" step="0.01">
+                            <button class="btn btn-secondary" onclick="calculateConcrete()">Calcola</button>
+                            <div class="calc-result" id="concrete-result"></div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h3>Piastrelle</h3>
+                        <div class="calc-form">
+                            <label>Area totale (m²):</label>
+                            <input type="number" id="tiles-area" step="0.1">
+                            <label>Dimensione piastrella (cm):</label>
+                            <input type="number" id="tile-size" value="30">
+                            <label>Scarto (%):</label>
+                            <input type="number" id="tiles-waste" value="10">
+                            <button class="btn btn-secondary" onclick="calculateTiles()">Calcola</button>
+                            <div class="calc-result" id="tiles-result"></div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h3>Pittura</h3>
+                        <div class="calc-form">
+                            <label>Area da dipingere (m²):</label>
+                            <input type="number" id="paint-area" step="0.1">
+                            <label>Numero di mani:</label>
+                            <input type="number" id="paint-coats" value="2">
+                            <label>Copertura per litro (m²):</label>
+                            <input type="number" id="paint-coverage" value="12">
+                            <button class="btn btn-secondary" onclick="calculatePaint()">Calcola</button>
+                            <div class="calc-result" id="paint-result"></div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-card">
+                        <h3>Impianto Elettrico</h3>
+                        <div class="calc-form">
+                            <label>Potenza totale (kW):</label>
+                            <input type="number" id="electric-power" step="0.1">
+                            <label>Lunghezza cavi (m):</label>
+                            <input type="number" id="cable-length">
+                            <label>Numero punti luce:</label>
+                            <input type="number" id="light-points">
+                            <button class="btn btn-secondary" onclick="calculateElectric()">Calcola</button>
+                            <div class="calc-result" id="electric-result"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estimates Section -->
+        <section id="estimates" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Gestione Preventivi</h1>
+                    <button class="btn btn-primary" id="new-estimate-btn">
+                        <i class="fas fa-plus"></i> Nuovo Preventivo
+                    </button>
+                </div>
+
+                <div class="estimates-list" id="estimates-list">
+                    <!-- Estimates will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Pianificazione Attività</h1>
+                    <button class="btn btn-primary" id="add-task-btn">
+                        <i class="fas fa-plus"></i> Nuova Attività
+                    </button>
+                </div>
+
+                <div class="schedule-container">
+                    <div class="calendar-view">
+                        <div class="calendar-header">
+                            <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                            <h3 id="current-month"></h3>
+                            <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar-grid" id="calendar-grid">
+                            <!-- Calendar will be dynamically generated -->
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-sidebar">
+                        <h3>Attività del Giorno</h3>
+                        <div id="daily-tasks" class="tasks-list">
+                            <!-- Daily tasks will be shown here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts Section -->
+        <section id="contacts" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Gestione Contatti</h1>
+                    <button class="btn btn-primary" id="add-contact-btn">
+                        <i class="fas fa-plus"></i> Nuovo Contatto
+                    </button>
+                </div>
+
+                <div class="contacts-filter">
+                    <select id="contact-type-filter">
+                        <option value="">Tutti i contatti</option>
+                        <option value="client">Clienti</option>
+                        <option value="supplier">Fornitori</option>
+                        <option value="collaborator">Collaboratori</option>
+                    </select>
+                    <input type="text" id="contact-search" placeholder="Cerca contatti...">
+                </div>
+
+                <div class="contacts-grid" id="contacts-list">
+                    <!-- Contacts will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Add Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nuovo Progetto</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="project-form">
+                <div class="form-group">
+                    <label for="project-name">Nome Progetto:</label>
+                    <input type="text" id="project-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-client">Cliente:</label>
+                    <input type="text" id="project-client" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-budget">Budget (€):</label>
+                    <input type="number" id="project-budget" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="project-start">Data Inizio:</label>
+                    <input type="date" id="project-start">
+                </div>
+                <div class="form-group">
+                    <label for="project-end">Data Fine Prevista:</label>
+                    <input type="date" id="project-end">
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Descrizione:</label>
+                    <textarea id="project-description" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-project">Annulla</button>
+                    <button type="submit" class="btn btn-primary">Salva Progetto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Contact Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nuovo Contatto</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Nome:</label>
+                    <input type="text" id="contact-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-company">Azienda:</label>
+                    <input type="text" id="contact-company">
+                </div>
+                <div class="form-group">
+                    <label for="contact-type">Tipo:</label>
+                    <select id="contact-type" required>
+                        <option value="">Seleziona tipo</option>
+                        <option value="client">Cliente</option>
+                        <option value="supplier">Fornitore</option>
+                        <option value="collaborator">Collaboratore</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">Telefono:</label>
+                    <input type="tel" id="contact-phone">
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email:</label>
+                    <input type="email" id="contact-email">
+                </div>
+                <div class="form-group">
+                    <label for="contact-address">Indirizzo:</label>
+                    <textarea id="contact-address" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-contact">Annulla</button>
+                    <button type="submit" class="btn btn-primary">Salva Contatto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/schedule.js"></script>
+    <script src="js/contacts.js"></script>
+</body>
+</html>
