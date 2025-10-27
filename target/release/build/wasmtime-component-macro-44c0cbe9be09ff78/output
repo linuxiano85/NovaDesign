@@ -1,0 +1,2 @@
+cargo:rerun-if-changed=build.rs
+cargo:rustc-env=DEBUG_OUTPUT_DIR=/home/runner/work/NovaDesign/NovaDesign/target/release/build/wasmtime-component-macro-44c0cbe9be09ff78/out
