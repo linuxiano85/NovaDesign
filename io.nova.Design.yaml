@@ -1,0 +1,35 @@
+app-id: io.nova.Design
+runtime: org.gnome.Platform
+runtime-version: '46'
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+command: nova-design
+
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --filesystem=home
+  - --talk-name=org.freedesktop.Flatpak
+
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env:
+    CARGO_HOME: /run/build/nova-design/cargo
+
+modules:
+  - name: nova-design
+    buildsystem: simple
+    build-commands:
+      - cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - cargo --offline build --release --verbose
+      - install -Dm755 ./target/release/nova-design -t /app/bin/
+      - install -Dm644 io.nova.Design.desktop /app/share/applications/io.nova.Design.desktop
+      - install -Dm644 io.nova.Design.metainfo.xml /app/share/metainfo/io.nova.Design.metainfo.xml
+      - install -Dm644 icons/io.nova.Design.svg /app/share/icons/hicolor/scalable/apps/io.nova.Design.svg
+    sources:
+      - type: dir
+        path: .
+      - cargo-sources.json

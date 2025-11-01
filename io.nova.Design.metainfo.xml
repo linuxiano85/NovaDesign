@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.nova.Design</id>
+  <metadata_license>GPL-3.0-or-later</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>NovaDesign</name>
+  <summary>CAD/BIM-lite application for trades</summary>
+  <summary xml:lang="it">Applicazione CAD/BIM-lite per i mestieri</summary>
+  <description>
+    <p>
+      NovaDesign is a Linux-only, Rust-based CAD/BIM-lite application focused on construction trades.
+      It provides tools for electrical, plumbing, masonry, drywall, ceiling, painting, and structural work.
+    </p>
+    <p xml:lang="it">
+      NovaDesign è un'applicazione CAD/BIM-lite basata su Rust, solo per Linux, focalizzata sui mestieri delle costruzioni.
+      Fornisce strumenti per lavori elettrici, idraulici, muratura, cartongesso, controsoffitti, imbiancatura e strutturali.
+    </p>
+    <p>
+      Features include:
+    </p>
+    <ul>
+      <li>2D and 3D views for building design</li>
+      <li>Phase-based construction planning (Existing/Demolition/New)</li>
+      <li>Bill of Materials (BOM) generation</li>
+      <li>Business suite for quotes, invoices, and customer management</li>
+      <li>Multi-discipline support (electrical, plumbing, drywall, ceilings)</li>
+      <li>Italian and English localization</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">io.nova.Design.desktop</launchable>
+  <url type="homepage">https://github.com/linuxiano85/NovaDesign</url>
+  <url type="bugtracker">https://github.com/linuxiano85/NovaDesign/issues</url>
+  <developer_name>NovaDesign Contributors</developer_name>
+  <categories>
+    <category>Graphics</category>
+    <category>Engineering</category>
+  </categories>
+  <keywords>
+    <keyword>cad</keyword>
+    <keyword>bim</keyword>
+    <keyword>construction</keyword>
+    <keyword>electrical</keyword>
+    <keyword>plumbing</keyword>
+    <keyword>drywall</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+</component>

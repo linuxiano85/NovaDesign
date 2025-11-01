@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=NovaDesign
+Comment=CAD/BIM-lite application for trades
+Comment[it]=Applicazione CAD/BIM-lite per i mestieri
+Exec=nova-design
+Icon=io.nova.Design
+Terminal=false
+Type=Application
+Categories=Graphics;Engineering;
+Keywords=cad;bim;construction;electrical;plumbing;drywall;
+Keywords[it]=cad;bim;costruzioni;elettrico;idraulico;cartongesso;
+StartupNotify=true
