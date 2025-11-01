@@ -2,22 +2,21 @@
 /target/
 Cargo.lock
 
-# IDE and editor files
+# Flatpak build artifacts
+/build/
+/.flatpak-builder/
+
+# IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# macOS
+# OS files
 .DS_Store
+Thumbs.db
 
-# Flatpak build artifacts
-build-dir/
-export/
-*.flatpak
-
-# Other common artifacts
-*.tmp
-*.log
-.cache/
+# Local environment files
+.env
+.env.local

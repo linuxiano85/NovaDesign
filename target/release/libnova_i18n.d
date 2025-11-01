@@ -1,0 +1,1 @@
+/home/runner/work/NovaDesign/NovaDesign/target/release/libnova_i18n.rlib: /home/runner/work/NovaDesign/NovaDesign/crates/nova-i18n/src/lib.rs /home/runner/work/NovaDesign/NovaDesign/crates/nova-i18n/src/locales.rs

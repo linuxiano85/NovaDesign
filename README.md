@@ -1,175 +1,201 @@
 # NovaDesign
 
-NovaDesign is a Linux-only, Rust-based, CAD/BIM-lite application focused on construction trades. It provides a clean, modern interface for managing electrical, plumbing, masonry, drywall, ceiling, painting, and structural work with integrated bill of materials generation and business management tools.
+A modern GTK4/Libadwaita application for Linux.
 
-## Features
+## Cross-distro Developer Setup
 
-### Core Design Tools
-- **Multi-discipline support**: Architecture, Electrical, Plumbing, Masonry, Drywall, Ceilings, Painting, Structural
-- **Phase-based construction planning**: Esistente (Existing), Demolizione (Demolition), Nuovo (New)
-- **2D and 3D view placeholders** (3D rendering with wgpu planned for future releases)
-- **Building data model** with levels, walls, and MEP systems
+NovaDesign targets Linux universally and provides automated setup across major distributions. The recommended way for end users to run NovaDesign is via **Flatpak** (universal runtime), while native builds are primarily for developers.
 
-### Bill of Materials (BOM) Engine
-- **Electrical device counting** by category (outlets, switches, lights, panels, etc.)
-- **Drywall material calculations**: montanti (studs), guide (tracks), lastre (boards), tasselli (fixings by substrate type)
-- **Suspended ceiling calculations**: profili T principali/secondari (T profiles), pendinature (hangers), angolari perimetrali (perimeter angles)
-- **CSV export** for BOM data
+### Quick Setup (Automated)
 
-### Business Suite
-- **Customer management**: companies and individual clients with VAT/CF codes
-- **Price lists**: categorized items with tax rates (IVA 22%, 10%, 4%, esente)
-- **Quotes (Preventivi)**: comprehensive estimation with line items and VAT calculations
-- **Invoices (Fatture)**: billing functionality based on quotes
-- **DDT (Documenti di Trasporto)**: delivery notes with transport details
-- **Company profiles**: complete business information including IBAN, logo, contacts
-- **Numbering sequences**: automatic document numbering by year
-- **CSV and JSON export** capabilities
-
-### Internationalization
-- **Italian and English** localization with fluent-rs
-- **Extensible i18n system** for future language additions
-
-### Modern Tech Stack
-- **Rust**: Memory-safe, performant, and reliable
-- **GTK4/Libadwaita**: Native Linux interface with light/dark theme support
-- **Flatpak packaging**: Easy installation and distribution
-- **Plugin SDK**: Extensible architecture with WASM/WASI support (planned)
-
-## Installation
-
-### From Flatpak (Recommended)
+For a fully automated setup that detects your distribution and installs all required dependencies:
 
 ```bash
-# Install from Flathub (when available)
-flatpak install flathub io.nova.Design
+./scripts/dev-setup.sh
+```
+
+This script supports:
+- **Debian/Ubuntu** (apt)
+- **Fedora/RHEL** (dnf/yum) 
+- **Arch Linux** (pacman)
+- **openSUSE** (zypper)
+- **Gentoo** (emerge)
+
+### Manual Setup by Distribution
+
+If you prefer manual installation or the automated script doesn't work for your setup:
+
+#### Debian/Ubuntu
+```bash
+sudo apt update
+sudo apt install build-essential pkg-config libgtk-4-dev libadwaita-1-dev \
+    libglib2.0-dev libpango1.0-dev libcairo2-dev libgdk-pixbuf-2.0-dev \
+    flatpak flatpak-builder
+```
+
+#### Fedora/RHEL
+```bash
+sudo dnf install gcc gcc-c++ pkg-config gtk4-devel libadwaita-devel \
+    glib2-devel pango-devel cairo-devel gdk-pixbuf2-devel \
+    flatpak flatpak-builder
+```
+
+#### Arch Linux
+```bash
+sudo pacman -Sy base-devel pkgconf gtk4 libadwaita glib2 pango cairo \
+    gdk-pixbuf2 flatpak flatpak-builder
+```
+
+#### openSUSE
+```bash
+sudo zypper install gcc gcc-c++ pkg-config gtk4-devel libadwaita-1-devel \
+    glib2-devel pango-devel cairo-devel gdk-pixbuf-devel \
+    flatpak flatpak-builder
+```
+
+#### Gentoo
+```bash
+sudo emerge sys-devel/gcc virtual/pkgconfig gui-libs/gtk:4 gui-libs/libadwaita \
+    dev-libs/glib x11-libs/pango x11-libs/cairo x11-libs/gdk-pixbuf \
+    sys-apps/flatpak dev-util/flatpak-builder
+```
+
+#### Nix/NixOS
+
+For Nix users, you can use a development shell:
+
+```bash
+nix-shell -p pkg-config gtk4 libadwaita glib pango cairo gdk-pixbuf flatpak flatpak-builder rustc cargo
+```
+
+Or create a `shell.nix` file in your project directory:
+
+```nix
+{ pkgs ? import <nixpkgs> {} }:
+
+pkgs.mkShell {
+  buildInputs = with pkgs; [
+    pkg-config
+    gtk4
+    libadwaita
+    glib
+    pango
+    cairo
+    gdk-pixbuf
+    flatpak
+    flatpak-builder
+    rustc
+    cargo
+  ];
+}
+```
+
+### Rust Installation
+
+If you don't have Rust installed, the setup script will install it automatically via rustup. You can also install it manually:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+```
+
+## Building and Running
+
+### Using Make (Recommended)
+
+The project includes a Makefile with convenient targets:
+
+```bash
+# First-time setup
+make setup
+
+# Build the project
+make build
+
+# Run the application
+make run
+
+# Format code
+make fmt
+
+# Run linter
+make clippy
+
+# Run tests  
+make test
+
+# Build Flatpak package
+make flatpak-build
+
+# Run via Flatpak
+make flatpak-run
+```
+
+### Using Cargo Directly
+
+```bash
+# Build the project
+cargo build --release
+
+# Run the application
+cargo run -p nova-app
+
+# Run tests
+cargo test
+
+# Format code
+cargo fmt
+
+# Run clippy
+cargo clippy
+```
+
+## Flatpak Usage (Recommended for End Users)
+
+NovaDesign is designed to be distributed primarily via Flatpak for a universal Linux experience:
+
+### Building the Flatpak
+
+```bash
+# Install required Flatpak runtimes
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak install flathub org.gnome.Platform//45 org.gnome.Sdk//45
+
+# Build the Flatpak package
+flatpak-builder build flatpak/io.nova.Design.json --force-clean --install-deps-from=flathub
+
+# Install locally
+flatpak-builder --user --install --force-clean build flatpak/io.nova.Design.json
 
 # Run the application
 flatpak run io.nova.Design
 ```
 
-### From Source
-
-#### Prerequisites
-- Rust 1.70+ with Cargo
-- GTK4 development libraries
-- Libadwaita development libraries
-
-On Ubuntu/Debian:
-```bash
-sudo apt install libgtk-4-dev libadwaita-1-dev pkg-config
-```
-
-#### Building
-```bash
-git clone https://github.com/linuxiano85/NovaDesign
-cd NovaDesign
-cargo build --release
-./target/release/nova-design
-```
-
-## Usage
-
-### Basic Workflow
-
-1. **Create a Project**: Start with a new building project
-2. **Add Elements**: Place electrical devices, drywall walls, suspended ceilings
-3. **Set Phases**: Categorize elements as Existing, Demolition, or New
-4. **Generate BOM**: Automatically calculate material quantities
-5. **Create Business Documents**: Generate quotes, invoices, and delivery notes
-
-### Example Integration
+### Or use Make targets:
 
 ```bash
-# Run the integration test to see all features in action
-cargo run --example integration_test
-```
-
-This example demonstrates:
-- Creating a building with multiple elements
-- Generating a complete bill of materials
-- Business document creation with pricing
-- CSV export functionality
-
-## Project Structure
-
-```
-NovaDesign/
-├── nova-core/          # Core data models (buildings, elements, phases)
-├── nova-bom/           # Bill of materials engine
-├── nova-biz/           # Business suite (quotes, invoices, customers)
-├── nova-i18n/          # Internationalization support
-├── nova-plugin-sdk/    # Plugin development SDK
-├── nova-design/        # Main GTK4 application
-└── examples/           # Integration tests and examples
+make flatpak-build
+make flatpak-run
 ```
 
 ## Development
 
-### Running Tests
-```bash
-cargo test --all-features
-```
+### Project Structure
 
-### Code Quality
-```bash
-# Format code
-cargo fmt
+- `nova-app/` - Main application package
+- `scripts/` - Development and setup scripts
+- `flatpak/` - Flatpak packaging configuration
+- `Makefile` - Convenient development targets
 
-# Run linter
-cargo clippy --all-targets --all-features
+### Contributing
 
-# Full CI check
-cargo fmt --check && cargo clippy --all-targets --all-features -- -D warnings && cargo test --all-features
-```
-
-### Building Flatpak
-```bash
-flatpak-builder build-dir io.nova.Design.yaml --force-clean
-flatpak build-export export build-dir
-flatpak build-bundle export nova-design.flatpak io.nova.Design
-```
-
-## Contributing
-
-Contributions are welcome! Please ensure:
-
-1. Code follows Rust standards (use `cargo fmt` and `cargo clippy`)
-2. Tests pass (`cargo test`)
-3. New features include appropriate tests
-4. Updates maintain GPL-3.0-or-later license compatibility
-
-## Roadmap
-
-### M1 (Current)
-- ✅ Core data models and BOM engine
-- ✅ Business suite foundation
-- ✅ GTK4/Libadwaita UI framework
-- ✅ Basic Italian/English i18n
-- ✅ Flatpak packaging
-
-### M2 (Planned)
-- 3D rendering with wgpu
-- Advanced electrical calculations
-- Plumbing flow calculations
-- Import/export formats (IFC, DWG)
-- Advanced business reporting
-
-### M3 (Future)
-- WASM/WASI plugin system
-- Cloud synchronization
-- Mobile companion app
-- AI-powered design assistance
+1. Run the setup script: `./scripts/dev-setup.sh`
+2. Build the project: `make build`
+3. Make your changes
+4. Test your changes: `make test`
+5. Format code: `make fmt`
+6. Run linter: `make clippy`
 
 ## License
 
-This project is licensed under GPL-3.0-or-later. See [LICENSE](LICENSE) for details.
-
-## Contact
-
-- **Repository**: https://github.com/linuxiano85/NovaDesign
-- **Issues**: https://github.com/linuxiano85/NovaDesign/issues
-
----
-
-*NovaDesign - Modern CAD/BIM tools for construction professionals*
+This project is licensed under the terms specified in the LICENSE file.

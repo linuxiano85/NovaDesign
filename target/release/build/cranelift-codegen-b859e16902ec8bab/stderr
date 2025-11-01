@@ -1,0 +1,18 @@
+Writing generated file: /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/settings.rs
+Writing generated file: /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/types.rs
+Writing generated file: /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/opcodes.rs
+Writing generated file: /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/clif_opt.isle
+Writing generated file: /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/clif_lower.isle
+Writing generated file: /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/inst_builder.rs
+Writing generated file: /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/settings-x86.rs
+Rebuilding /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_opt.rs
+Writing ISLE-generated Rust code to /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_opt.rs
+Rebuilding /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_x64.rs
+Writing ISLE-generated Rust code to /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_x64.rs
+Rebuilding /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_aarch64.rs
+Writing ISLE-generated Rust code to /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_aarch64.rs
+Rebuilding /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_s390x.rs
+Writing ISLE-generated Rust code to /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_s390x.rs
+Rebuilding /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_riscv64.rs
+Writing ISLE-generated Rust code to /home/runner/work/NovaDesign/NovaDesign/target/release/build/cranelift-codegen-b859e16902ec8bab/out/isle_riscv64.rs
+fatal: not a git repository (or any of the parent directories): .git

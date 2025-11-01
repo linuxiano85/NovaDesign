@@ -1,0 +1,9 @@
+[package]
+name = "nova-app"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gtk4 = { workspace = true }
+libadwaita = { workspace = true }
+glib = { workspace = true }
